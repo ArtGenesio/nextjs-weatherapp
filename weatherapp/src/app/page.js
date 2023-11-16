@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import Weather from './components/Weather'
 import Spinner from '../../public/images/Interwind-1s-200px.gif'
-
+import './fade.css'
 
 export default function Home() {
   let imgNumber;
@@ -20,7 +20,7 @@ export default function Home() {
   const getRandomImage = () => {
     const images = [0,1,2,3,4]
       imgNumber = images[Math.floor(Math.random() * images.length)];
-      setRandomImage(`/images/${imgNumber}.jpg`)
+      setRandomImage(`/images/${imgNumber}.webp`)
       
   }
 
@@ -64,8 +64,10 @@ export default function Home() {
             {/*Overlay object */}
             <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/30 z-10'/>
             {/*Bacground image /images/0.jpg*/ }
+            <div className='w-full h-full fadeInImg'>
+              {randomImage &&<Image src={randomImage} fill={true} className='object-cover' alt="A beautiful nature image"/>}
+            </div>
             
-            {randomImage &&<Image src={randomImage} fill={true} className='object-cover' alt="A beautiful nature image"/>}
             {/*Search schema */}
             <div className='relative flex justify-between items-center max-w-[600px] w-full m-auto pt-4 text-white z-10'>
               <form onSubmit={fetchWeather} className='relative flex justify-between items-center w-full m-auto bg-transparent border border-gray-300 p-3  text-white rounded-2xl'> 
