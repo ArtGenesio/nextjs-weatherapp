@@ -7,8 +7,22 @@ const Weather = ({data}) => {
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     let day = weekday[currentdate.getDay()];
     var datetime = day + " "
-    + currentdate.getHours() + ":" 
-    + currentdate.getMinutes()
+    + timeCorrection(currentdate.getHours()) + ":" 
+    + timeCorrection(currentdate.getMinutes())
+
+    function timeCorrection(timeC) {
+        if(timeC) {
+            if(timeC < 10 && timeC > 0) {
+                timeC = "0" + timeC
+                console.log(typeof timeC)
+            }
+            if(timeC == 0) {
+                timeC = "00"
+            }
+        }
+    
+        return timeC
+    }
     return (
         <div className='relative flex-col justify-between max-w-[650px] w-full h-[90vh] m-auto text-white z10'>
             {/*top bar */}
